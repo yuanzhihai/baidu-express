@@ -42,7 +42,7 @@ class BDExpress
     public static function searchExpress($number)
     {
         static $instance;
-        if($instance instanceof BDExpress) {
+        if( !$instance instanceof BDExpress ) {
             $instance = new BDExpress();
         }
         return $instance->search($number);
