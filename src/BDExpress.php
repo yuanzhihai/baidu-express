@@ -10,18 +10,18 @@ class BDExpress
     /**
      * @var Curl
      */
-    public $curl;
+    private $curl;
 
     /**
      * 查询地址
      * @var string
      */
-    public $url = 'https://sp0.baidu.com/9_Q4sjW91Qh3otqbppnN2DJv/pae/channel/data/asyncqury';
+    private $url = 'https://sp0.baidu.com/9_Q4sjW91Qh3otqbppnN2DJv/pae/channel/data/asyncqury';
 
     /**
      * BDExpress constructor.
      */
-    public function __construct()
+    private function __construct()
     {
         $this->curl = new Curl();
 
@@ -35,11 +35,25 @@ class BDExpress
     }
 
     /**
+     * searchExpress
+     * @param $number
+     * @return array
+     */
+    public static function searchExpress($number)
+    {
+        static $instance;
+        if($instance instanceof BDExpress) {
+            $instance = new BDExpress();
+        }
+        return $instance->search($number);
+    }
+
+    /**
      * search
      * @param $number
      * @return array
      */
-    public function search($number)
+    private function search($number)
     {
 
         $this->curl->setDefaultJsonDecoder(1);
