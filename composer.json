@@ -1,0 +1,21 @@
+{
+    "name": "crazephper/baidu-express",
+    "description": "基于百度查询快递信息",
+    "require": {
+        "php": ">=7.0",
+        "ext-json": "*",
+        "php-curl-class/php-curl-class": "8.6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "BDExpress\\" : "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "crazephper",
+            "email": "254364502@qq.com"
+        }
+    ],
+    "minimum-stability": "stable"
+}
