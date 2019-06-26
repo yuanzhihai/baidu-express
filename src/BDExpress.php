@@ -1,6 +1,6 @@
 <?php
 
-namespace BDExpress;
+namespace Express;
 
 use Curl\Curl;
 
