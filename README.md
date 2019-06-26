@@ -1,13 +1,13 @@
-https://github.com/crazePhper/baidu-express
+https://packagist.org/packages/crazephper/baidu-express
 
 基于百度查询快递信息
 
 ```php
-$bdExpress = new BDExpress();
+use Express\BDExpress;
 
 $number = 'xxxxxxxxxxxx';
 
-$res = $bdExpress->search($number);
+$res = BDExpress::searchExpress($number);
 
 Array
 (
