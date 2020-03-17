@@ -69,7 +69,7 @@ class BDExpress
 
         $info = $response['data']['info']??[];
 
-        if (!empty($info)) {
+        if (!empty($info) && ($info['status']??0) == 1) {
 
             $info['companyName'] = $this->companyList($info['com']??'');
 
