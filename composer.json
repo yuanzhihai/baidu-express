@@ -1,5 +1,5 @@
 {
-    "name": "crazephper/baidu-express",
+    "name": "easydowork/baidu-express",
     "description": "基于百度查询快递信息",
     "require": {
         "php": ">=7.0",
@@ -13,7 +13,7 @@
     },
     "authors": [
         {
-            "name": "crazephper",
+            "name": "easydowork",
             "email": "254364502@qq.com"
         }
     ],
