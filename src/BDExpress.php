@@ -4,6 +4,11 @@ namespace Express;
 
 use Curl\Curl;
 
+/**
+ * Class BDExpress
+ * @property Curl $curl
+ * @package Express
+ */
 class BDExpress
 {
 
@@ -16,7 +21,7 @@ class BDExpress
      * 查询地址
      * @var string
      */
-    private $url = 'https://express.baidu.com/express/api/express';
+    private $url = 'http://express.baidu.com/express/api/express';
 
 
     /**
@@ -41,8 +46,8 @@ class BDExpress
     public static function searchExpress($number)
     {
         static $instance;
-        if( !$instance instanceof ExpressHelper ) {
-            $instance = new ExpressHelper();
+        if( !$instance instanceof BDExpress ) {
+            $instance = new BDExpress();
         }
         return $instance->search($number);
     }
@@ -50,9 +55,10 @@ class BDExpress
     /**
      * search
      * @param $number
+     * @param string $com
      * @return array
      */
-    private function search($number)
+    private function search($number,$com='')
     {
 
         $this->curl->setDefaultJsonDecoder(1);
@@ -63,6 +69,7 @@ class BDExpress
             'tokenV2' => $tokenV2,
             'appid' => 4001,
             'nu'    => $number,
+            'com'    => $com,
         ]);
 
         $response = $this->curl->response;
@@ -86,7 +93,7 @@ class BDExpress
     protected function getTokenV2()
     {
         $curl = $this->curl;
-        $tokenUrl = 'https://www.baidu.com/baidu?isource=infinity&iname=baidu&itype=web&tn=02003390_42_hao_pg&ie=utf-8&wd=%E5%BF%AB%E9%80%92';
+        $tokenUrl = 'http://www.baidu.com/baidu?isource=infinity&iname=baidu&itype=web&tn=02003390_42_hao_pg&ie=utf-8&wd=%E5%BF%AB%E9%80%92';
         $curl->get($tokenUrl);
         $pattern = '/tokenV2=(.*?)"/i';
         preg_match($pattern, $curl->response, $match);
