@@ -1,4 +1,3 @@
-https://packagist.org/packages/easydowork/baidu-express
 
 基于百度查询快递信息
 
