@@ -21,7 +21,7 @@ class BDExpress
      * 查询地址
      * @var string
      */
-    private $url = 'https://alayn.baidu.com/express/appdetail/get_detail';
+    private $url = 'https://express.baidu.com/express/api/express';
 
 
     /**
@@ -63,28 +63,23 @@ class BDExpress
 
         $this->curl->setDefaultJsonDecoder( 1 );
 
-        $tokenV2 = $this->getTokenV2();
+        $tokenV2 = $this->getTokenV2( $number );
 
-        if (empty( $com )) {
-            $com = $this->getCom( $number );
-        }
 
         $this->curl->get( $this->url,[
             'query_from_srcid' => 51151,
             'tokenV2'          => $tokenV2,
             'appid'            => 4001,
             'nu'               => $number,
-            'com'              => $com,
-            'verifyMode'       => 1
+            'com'              => $com
         ] );
 
         $response = $this->curl->response;
 
-        $info = $response['data']['context'] ?? [];
+        $info = $response['data']['info'] ?? [];
 
         if (!empty( $info )) {
-
-            $info['companyName'] = $this->companyList( $com ?? '' );
+            $info['companyName'] = $this->companyList( $info['com'] ?? '' );
 
             return $info;
         }
@@ -94,25 +89,13 @@ class BDExpress
 
 
     /**
-     * getCom
-     * @param $number
-     * @return mixed
-     */
-    protected function getCom($number)
-    {
-        $this->curl->get( 'https://alayn.baidu.com/express/appdetail/get_com',['num' => $number] );
-        $response = $this->curl->response;
-        return $response['data']['company'];
-    }
-
-    /**
      * getTokenV2
      * @return string
      */
-    protected function getTokenV2()
+    protected function getTokenV2($number)
     {
         $curl     = $this->curl;
-        $tokenUrl = 'http://www.baidu.com/baidu?isource=infinity&iname=baidu&itype=web&tn=02003390_42_hao_pg&ie=utf-8&wd=%E5%BF%AB%E9%80%92';
+        $tokenUrl = 'https://www.baidu.com/s?wd='.$number;
         $curl->get( $tokenUrl );
         $pattern = '/tokenV2=(.*?)"/i';
         preg_match( $pattern,$curl->response,$match );
