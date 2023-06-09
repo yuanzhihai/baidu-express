@@ -93,6 +93,11 @@ class BDExpress
     }
 
 
+    /**
+     * getCom
+     * @param $number
+     * @return mixed
+     */
     protected function getCom($number)
     {
         $this->curl->get( 'https://alayn.baidu.com/express/appdetail/get_com',['num' => $number] );
@@ -151,6 +156,7 @@ class BDExpress
             'dpex'                   => 'dpex',
             'dsukuaidi'              => 'd速快递',
             'disifang'               => '递四方',
+            'danniao'                => '丹鸟',
             'fedex'                  => 'fedex（国外）',
             'feikangda'              => '飞康达物流',
             'fenghuangkuaidi'        => '凤凰快递',
